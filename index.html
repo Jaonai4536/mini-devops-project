@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เครื่องคิดเลข</title>
+    <!-- ใช้ Tailwind CSS เพื่อความสวยงาม -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- เพิ่มฟอนต์สวยๆ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* กำหนด CSS เพิ่มเติม */
+        body {
+            font-family: 'Inter', sans-serif;
+            touch-action: manipulation; /* ป้องกันการซูมเมื่อแตะรัวๆ บนมือถือ */
+        }
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        .btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6">
+        <!-- หน้าจอแสดงผลของเครื่องคิดเลข -->
+        <div id="display" class="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg p-4 text-4xl font-mono text-right overflow-x-auto mb-6">0</div>
+
+        <!-- แป้นปุ่มกด -->
+        <div class="calculator-grid">
+            <!-- แถวที่ 1 -->
+            <button class="btn clear-btn bg-red-500 hover:bg-red-600 text-white text-2xl font-bold py-4 rounded-lg" data-value="C">C</button>
+            <button class="btn operator-btn bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value="(">(</button>
+            <button class="btn operator-btn bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value=")">)</button>
+            <button class="btn operator-btn bg-orange-500 hover:bg-orange-600 text-white text-2xl font-bold py-4 rounded-lg" data-value="/">÷</button>
+            
+            <!-- แถวที่ 2 -->
+            <button class="btn bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value="7">7</button>
+            <button class="btn bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value="8">8</button>
+            <button class="btn bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value="9">9</button>
+            <button class="btn operator-btn bg-orange-500 hover:bg-orange-600 text-white text-2xl font-bold py-4 rounded-lg" data-value="*">×</button>
+
+            <!-- แถวที่ 3 -->
+            <button class="btn bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value="4">4</button>
+            <button class="btn bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value="5">5</button>
+            <button class="btn bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value="6">6</button>
+            <button class="btn operator-btn bg-orange-500 hover:bg-orange-600 text-white text-2xl font-bold py-4 rounded-lg" data-value="-">−</button>
+
+            <!-- แถวที่ 4 -->
+            <button class="btn bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value="1">1</button>
+            <button class="btn bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value="2">2</button>
+            <button class="btn bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value="3">3</button>
+            <button class="btn operator-btn bg-orange-500 hover:bg-orange-600 text-white text-2xl font-bold py-4 rounded-lg" data-value="+">+</button>
+
+            <!-- แถวที่ 5 -->
+            <button class="btn col-span-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value="0">0</button>
+            <button class="btn bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value=".">.</button>
+            <button class="btn equals-btn bg-green-500 hover:bg-green-600 text-white text-2xl font-bold py-4 rounded-lg" data-value="=">=</button>
+        </div>
+    </div>
+
+    <script>
+        // ส่วนของ JavaScript สำหรับการทำงานของเครื่องคิดเลข
+        const display = document.getElementById('display');
+        const buttons = document.querySelectorAll('.btn');
+
+        let currentInput = '0';
+        let operator = null;
+        let previousInput = null;
+
+        //วนลูปเพื่อใส่ Event Listener ให้ทุกปุ่ม
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const value = button.dataset.value;
+                handleInput(value);
+            });
+        });
+
+        function handleInput(value) {
+            if (value === 'C') {
+                // เคลียร์ค่าทั้งหมด
+                currentInput = '0';
+                display.textContent = currentInput;
+            } else if (value === '=') {
+                // คำนวณผลลัพธ์
+                try {
+                    // ใช้ eval() เพื่อความง่าย แต่ควรระวังในการใช้งานจริง
+                    // ทำการเปลี่ยนสัญลักษณ์ × และ ÷ กลับเป็น * และ / ก่อนคำนวณ
+                    const expression = currentInput.replace(/×/g, '*').replace(/÷/g, '/');
+                    let result = eval(expression);
+                    // จัดการทศนิยมให้สวยงาม
+                    result = parseFloat(result.toPrecision(12));
+                    display.textContent = result;
+                    currentInput = result.toString();
+                } catch (error) {
+                    display.textContent = 'Error';
+                    currentInput = '0';
+                }
+            } else {
+                // จัดการการพิมพ์ตัวเลขและเครื่องหมาย
+                if (currentInput === '0' && value !== '.') {
+                    currentInput = value;
+                } else {
+                    currentInput += value;
+                }
+                display.textContent = currentInput;
+            }
+        }
+    </script>
+</body>
+</html>
