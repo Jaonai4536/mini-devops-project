@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เครื่องคิดเลข</title>
+    <!-- Commit 1: Update page title -->
+    <title>My DevOps Calculator</title>
     <!-- ใช้ Tailwind CSS เพื่อความสวยงาม -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- เพิ่มฟอนต์สวยๆ -->
@@ -33,12 +34,14 @@
 
     <div class="w-full max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6">
         <!-- หน้าจอแสดงผลของเครื่องคิดเลข -->
-        <div id="display" class="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg p-4 text-4xl font-mono text-right overflow-x-auto mb-6">0</div>
+        <!-- Commit 5: Change initial display text -->
+        <div id="display" class="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg p-4 text-4xl font-mono text-right overflow-x-auto mb-6">Start</div>
 
         <!-- แป้นปุ่มกด -->
         <div class="calculator-grid">
             <!-- แถวที่ 1 -->
-            <button class="btn clear-btn bg-red-500 hover:bg-red-600 text-white text-2xl font-bold py-4 rounded-lg" data-value="C">C</button>
+            <!-- Commit 2: Change clear button color to yellow -->
+            <button class="btn clear-btn bg-yellow-500 hover:bg-yellow-600 text-white text-2xl font-bold py-4 rounded-lg" data-value="C">C</button>
             <button class="btn operator-btn bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value="(">(</button>
             <button class="btn operator-btn bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value=")">)</button>
             <button class="btn operator-btn bg-orange-500 hover:bg-orange-600 text-white text-2xl font-bold py-4 rounded-lg" data-value="/">÷</button>
@@ -64,7 +67,8 @@
             <!-- แถวที่ 5 -->
             <button class="btn col-span-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value="0">0</button>
             <button class="btn bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-white text-2xl font-bold py-4 rounded-lg" data-value=".">.</button>
-            <button class="btn equals-btn bg-green-500 hover:bg-green-600 text-white text-2xl font-bold py-4 rounded-lg" data-value="=">=</button>
+            <!-- Commit 3: Change equals button color to blue -->
+            <button class="btn equals-btn bg-blue-500 hover:bg-blue-600 text-white text-2xl font-bold py-4 rounded-lg" data-value="=">=</button>
         </div>
     </div>
 
@@ -72,8 +76,9 @@
         // ส่วนของ JavaScript สำหรับการทำงานของเครื่องคิดเลข
         const display = document.getElementById('display');
         const buttons = document.querySelectorAll('.btn');
+        // Commit 4: Add comment to explain button selection
 
-        let currentInput = '0';
+        let currentInput = 'Start';
         let operator = null;
         let previousInput = null;
 
@@ -107,7 +112,7 @@
                 }
             } else {
                 // จัดการการพิมพ์ตัวเลขและเครื่องหมาย
-                if (currentInput === '0' && value !== '.') {
+                if ((currentInput === '0' || currentInput === 'Start') && value !== '.') {
                     currentInput = value;
                 } else {
                     currentInput += value;
@@ -118,3 +123,4 @@
     </script>
 </body>
 </html>
+
